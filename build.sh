@@ -76,8 +76,8 @@ a2enmod rewrite     \
         vhost_alias \
 
 sed -e 's/www-data/user/' /etc/apache2/envvars > /etc/apache2/envvars
-mkdir -p /var/www/virtual
-chown -R user:user /var/www
+mkdir -p /var/virtualhosts
+chown -R user:user /var/virtualhosts
 
 # restart services
 service bind9 restart
