@@ -63,6 +63,7 @@ apt-get -yq clean
 # configure bind/named
 echo -e "\nzone \"dev\" { type master; file \"/etc/bind/dev.zone\"; };\n" >> /etc/bind/named.conf.local
 wget --no-check-certificate -O /etc/bind/dev.zone https://raw.github.com/juhasz/dClass-builder/master/dev.zone
+sysv-rc-conf bind on
 
 # configure apache
 rm /etc/apache2/sites-availabe/default
