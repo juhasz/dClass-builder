@@ -36,8 +36,10 @@ echo phpmyadmin       phpmyadmin/mysql/app-pass         password root    | debco
 
 # install
 apt-get -yq install git                  \
+                    git-core             \
                     git-gui              \
                     git-completion       \
+                    curl                 \
                     bind9                \
                     sysv-rc-conf         \
                     apache2              \
@@ -75,7 +77,8 @@ wget --no-check-certificate -O /etc/apache2/sites-available/default https://raw.
 a2enmod rewrite     \
         vhost_alias \
 
-sed -e 's/www-data/user/' /etc/apache2/envvars > /etc/apache2/envvars
+cp /etc/apache2/envvars /etc/apache2/envvars.bak
+cat /etc/apache2/envvars.bak | sed -e 's/www-data/user/' > /etc/apache2/envvars
 mkdir -p /var/virtualhosts
 chown -R user:user /var/virtualhosts
 
@@ -96,5 +99,10 @@ chown -R user:user /home/user/drush /home/user/.drush
 mkdir /home/user/bin
 chown -R user:user /home/user/bin
 echo -e '\nexport PATH=~/bin:~/drush:$PATH\n' >> /home/user/.bashrc
+
+# user configuration
+echo "user ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers > /dev/null
+cp /etc/lxdm/lxdm.conf /etc/lxdm/lxdm.conf.bak
+cat /etc/lxdm/lxdm.conf.bak | sed -e 's/# autologin=dgod/autologin=user/' > /etc/lxdm/lxdm.conf
 
 exit 0
