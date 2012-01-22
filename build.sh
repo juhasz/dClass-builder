@@ -82,6 +82,9 @@ cat /etc/apache2/envvars.bak | sed -e 's/www-data/user/' > /etc/apache2/envvars
 mkdir -p /var/www
 chown -R user:user /var/www
 
+# configure PHP
+rm /etc/php5/conf.d/sqlite.ini
+
 # restart services
 service bind9 restart
 service apache2 restart
