@@ -59,4 +59,12 @@ apt-get -yq install git                                                         
 apt-get -yq autoremove
 apt-get -yq clean
 
+# configure bind/named
+echo -e "\nzone \"dev\" { type master; file \"/etc/bind/dev.zone\"; };\n" >> /etc/bind/named.conf.local
+wget --no-check-certificate -O /etc/bind/dev.zone https://raw.github.com/juhasz/dClass-builder/master/dev.zone
+
+#restart services
+service bind9 restart
+service apache2 restart
+
 exit 0
