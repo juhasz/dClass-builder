@@ -106,6 +106,6 @@ cp /etc/lxdm/lxdm.conf /etc/lxdm/lxdm.conf.bak
 cat /etc/lxdm/lxdm.conf.bak | sed -e 's/# autologin=dgod/autologin=user/' > /etc/lxdm/lxdm.conf
 
 # reboot
-reboot now
+reboot
 
 exit 0
