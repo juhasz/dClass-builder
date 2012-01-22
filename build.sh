@@ -68,7 +68,7 @@ sysv-rc-conf bind on
 # configure apache
 rm /etc/apache2/sites-availabe/default
 wget --no-check-certificate -O /etc/apache2/sites-available/default https://raw.github.com/juhasz/dClass-builder/master/apache-default-site
-a2enmod rewrite \
+a2enmod rewrite     \
         vhost_alias \
 
 sed -e 's/www-data/user/' /etc/apache2/envvars > /etc/apache2/envvars
