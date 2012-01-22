@@ -61,6 +61,10 @@ apt-get -yq autoremove
 apt-get -yq clean
 
 # configure bind/named
+cp /etc/resolv.conf /etc/resolv.conf.bak
+echo 'nameserver 127.0.0.1' > /etc/resolv.conf
+cat /etc/resolv.conf.bak >> /etc/resolv.conf
+
 echo -e "\nzone \"dev\" { type master; file \"/etc/bind/dev.zone\"; };\n" >> /etc/bind/named.conf.local
 wget --no-check-certificate -O /etc/bind/dev.zone https://raw.github.com/juhasz/dClass-builder/master/dev.zone
 sysv-rc-conf bind on
