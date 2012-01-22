@@ -73,6 +73,6 @@ a2enmod rewrite
 #restart services
 service bind9 restart
 service apache2 restart
-servere mysql restart
+service mysql restart
 
 exit 0
