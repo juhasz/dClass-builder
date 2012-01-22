@@ -105,4 +105,7 @@ echo "user ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers > /dev/null
 cp /etc/lxdm/lxdm.conf /etc/lxdm/lxdm.conf.bak
 cat /etc/lxdm/lxdm.conf.bak | sed -e 's/# autologin=dgod/autologin=user/' > /etc/lxdm/lxdm.conf
 
+# reboot
+reboot now
+
 exit 0
