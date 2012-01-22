@@ -46,6 +46,7 @@
 	VirtualDocumentRoot /var/www/virtual/
 	ErrorLog     /var/www/virtual-error.log
 	CustomLog    /var/www/virtual-access.log combined
+	AccessFileName .htaccess
 	<Directory   /var/www/virtual>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
@@ -60,7 +61,8 @@
 	VirtualDocumentRoot /var/www/virtual/%1/
 	ErrorLog     /var/www/virtual-error.log
 	CustomLog    /var/www/virtual-access.log combined
-	<Directory   /var/www/virtual>
+	AccessFileName .htaccess
+	<Directory   /var/www/virtual/%1>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny

@@ -67,12 +67,30 @@ sysv-rc-conf bind on
 
 # configure apache
 rm /etc/apache2/sites-availabe/default
-wget --no-check-certificate -O /etc/apache2/sites-availabe/default https://raw.github.com/juhasz/dClass-builder/master/apache-default-site
-a2enmod rewrite
+wget --no-check-certificate -O /etc/apache2/sites-available/default https://raw.github.com/juhasz/dClass-builder/master/apache-default-site
+a2enmod rewrite \
+        vhost_alias \
 
-#restart services
+sed -e 's/www-data/user/' /etc/apache2/envvars > /etc/apache2/envvars
+mkdir -p /var/www/virtual
+chown -R user:user /var/www
+
+# restart services
 service bind9 restart
 service apache2 restart
 service mysql restart
+
+# set up drush and drush_make
+wget -O /home/user/drush.zip http://ftp.drupal.org/files/projects/drush-7.x-4.5.zip
+unzip -d /home/user /home/user/drush.zip
+mkdir /home/user/.drush
+wget -O /home/user/drush_make.zip http://ftp.drupal.org/files/projects/drush_make-6.x-2.3.zip
+unzip -d /home/user/.drush /home/user/drush_make.zip
+chown -R user:user /home/user/drush /home/user/.drush
+
+# set user bin directory
+mkdir /home/user/bin
+chown -R user:user /home/user/bin
+echo -e '\nexport PATH=~/bin:~/drush:$PATH\n' >> /home/user/.bashrc
 
 exit 0
