@@ -79,8 +79,8 @@ a2enmod rewrite     \
 
 cp /etc/apache2/envvars /etc/apache2/envvars.bak
 cat /etc/apache2/envvars.bak | sed -e 's/www-data/user/' > /etc/apache2/envvars
-mkdir -p /var/virtualhosts
-chown -R user:user /var/virtualhosts
+mkdir -p /var/www
+chown -R user:user /var/www
 
 # restart services
 service bind9 restart

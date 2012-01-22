@@ -43,11 +43,11 @@
 <VirtualHost *:80>
 	ServerName dev
 	ServerAlias dev
-	VirtualDocumentRoot /var/virtualhosts/
-	ErrorLog     /var/virtualhosts/virtual-error.log
-	CustomLog    /var/virtualhosts/virtual-access.log combined
+	VirtualDocumentRoot /var/www/
+	ErrorLog     /var/www/virtual-error.log
+	CustomLog    /var/www/virtual-access.log combined
 	AccessFileName .htaccess
-	<Directory   /var/virtualhosts>
+	<Directory   /var/www>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny
@@ -58,11 +58,11 @@
 <VirtualHost *:80>
 	ServerName dev
 	ServerAlias *.dev
-	VirtualDocumentRoot /var/virtualhosts/%1/
-	ErrorLog     /var/virtualhosts/virtual-error.log
-	CustomLog    /var/virtualhosts/virtual-access.log combined
+	VirtualDocumentRoot /var/www/%1/
+	ErrorLog     /var/www/virtual-error.log
+	CustomLog    /var/www/virtual-access.log combined
 	AccessFileName .htaccess
-	<Directory   /var/virtualhosts/%1>
+	<Directory   /var/www/%1>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny
