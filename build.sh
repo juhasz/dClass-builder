@@ -7,12 +7,20 @@ apt-get -yq remove audacious             \
                    libaudclient2         \
                    libaudcore1
 
-apt-get -yq autoremove
-apt-get -yq clean
-
 # upgrade
 apt-get -yq update
 apt-get -yq upgrade
+
+# quiet install needed :)
+echo mysql-server-5.1 mysql-server/root_password        password root    | sudo debconf-set-selections
+echo mysql-server-5.1 mysql-server/root_password_again  password root    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/reconfigure-webserver  text     apache2 | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/dbconfig-install       boolean  true    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/app-password-confirm   password root    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/mysql/admin-pass       password root    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/password-confirm       password root    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/setup-password         password root    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/mysql/app-pass         password root    | sudo debconf-set-selections
 
 # install
 apt-get -yq install git                  \
@@ -34,5 +42,9 @@ apt-get -yq install git                  \
                     php5-xdebug          \
                     openssh-server       \
                     vim-gnome            \
+
+# cleanup
+apt-get -yq autoremove
+apt-get -yq clean
 
 exit 0
