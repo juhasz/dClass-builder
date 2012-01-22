@@ -12,5 +12,4 @@ $TTL	604800
 @	IN	NS	localhost.
 @	IN	A	127.0.0.1
 @	IN	AAAA	::1
-*.dev.		A	127.0.0.1
-
+dev.		A	127.0.0.1
